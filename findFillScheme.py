@@ -13,18 +13,25 @@ def hasCollision(bunch):
     else:
         return "False"
 
-dir = "/Users/rohan/Desktop/"
-fill = "BunchFill4961"
+def findOneFillScheme(path,filename,outdir):
 
-soup = BeautifulSoup(open(dir+fill+".html"),"lxml")
-
-bunchMap = soup.map
-bunches = [area for area in bunchMap.findAll("area")]
-
-f = open(fill+".txt","w")
-
-for bunch in bunches:
-    bunch_clean = hasCollision(str(bunch))
+    soup = BeautifulSoup(open(path+filename+".html"),"lxml")
     
-    f.write(bunch_clean+"\n")
+    bunchMap = soup.map
+    bunches = [area for area in bunchMap.findAll("area")]
+    
+    f = open(outdir+fill+".txt","w")
+    
+    for bunch in bunches:
+        bunch_clean = hasCollision(str(bunch))
+        f.write(bunch_clean+"\n")
+    f.close()
+    print("Saved "+outdir+fill+".txt")
 
+#Main Loop
+dir = "/Users/rohan/Desktop/"
+fills = ["BunchFill4961","BunchFill4964"]
+outdir = "fillschemes/"
+
+for fill in fills:
+    findOneFillScheme(dir,fill,outdir)
