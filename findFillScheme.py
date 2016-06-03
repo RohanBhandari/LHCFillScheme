@@ -9,9 +9,9 @@ def hasCollision(bunch):
 
     #Only collision if all are true (i.e. no false)
     if idx_false==-1:
-        return "True"
+        return "1"
     else:
-        return "False"
+        return "0"
 
 def findOneFillScheme(path,filename,outdir):
 
@@ -30,7 +30,7 @@ def findOneFillScheme(path,filename,outdir):
 
 #Main Loop
 dir = "/Users/rohan/Desktop/"
-fills = ["BunchFill4961","BunchFill4964"]
+fills = ["BunchFill4919","BunchFill4924","BunchFill4961","BunchFill4964"]
 outdir = "fillschemes/"
 
 for fill in fills:
