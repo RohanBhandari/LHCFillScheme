@@ -38,6 +38,7 @@ outdir = "fillschemes/"
 
 #2016
 fills = [
+    #Run2016B
     "BunchFill4888","BunchFill4889","BunchFill4890","BunchFill4892","BunchFill4895",
     "BunchFill4896","BunchFill4905","BunchFill4906","BunchFill4910","BunchFill4915",
     "BunchFill4919","BunchFill4924","BunchFill4925","BunchFill4926","BunchFill4930",
@@ -47,7 +48,15 @@ fills = [
     "BunchFill4980","BunchFill4984","BunchFill4985","BunchFill4988","BunchFill4990",
     "BunchFill5005","BunchFill5013","BunchFill5017","BunchFill5020","BunchFill5021",
     "BunchFill5024","BunchFill5026","BunchFill5027","BunchFill5028","BunchFill5029",
-    "BunchFill5030"
+    "BunchFill5030",
+
+    #Run2016C
+    "BunchFill5038","BunchFill5043","BunchFill5045","BunchFill5048","BunchFill5052",
+    "BunchFill5056","BunchFill5059","BunchFill5060","BunchFill5069","BunchFill5071",
+
+    #Run2016D
+    "BunchFill5072","BunchFill5073","BunchFill5076","BunchFill5078","BunchFill5080",
+    "BunchFill5083"
     ]
 
 for fill in fills:
