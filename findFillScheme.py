@@ -6,11 +6,10 @@ import os.path
 import sys
 
 def hasCollision(bunch):
-    idx_true=bunch.find("true")
-    idx_false=bunch.find("false")
+    nTrue=bunch.count("true")
 
-    #Only collision if all are true (i.e. no false)
-    if idx_false==-1:
+    #Collision if at least Beam 1 and 2 are "true"
+    if nTrue>=2:
         return "1"
     else:
         return "0"
@@ -35,8 +34,21 @@ def findOneFillScheme(path,filename,outdir):
 
 #Main Loop
 dir = "/Users/rohan/Desktop/"
-fills = ["BunchFill4919","BunchFill4924","BunchFill4925","BunchFill4926","BunchFill4930","BunchFill4961","BunchFill4964"]
 outdir = "fillschemes/"
+
+#2016
+fills = [
+    "BunchFill4888","BunchFill4889","BunchFill4890","BunchFill4892","BunchFill4895",
+    "BunchFill4896","BunchFill4905","BunchFill4906","BunchFill4910","BunchFill4915",
+    "BunchFill4919","BunchFill4924","BunchFill4925","BunchFill4926","BunchFill4930",
+    "BunchFill4935","BunchFill4937","BunchFill4942","BunchFill4945","BunchFill4947",
+    "BunchFill4953","BunchFill4954","BunchFill4956","BunchFill4958","BunchFill4960",
+    "BunchFill4961","BunchFill4964","BunchFill4965","BunchFill4976","BunchFill4979",
+    "BunchFill4980","BunchFill4984","BunchFill4985","BunchFill4988","BunchFill4990",
+    "BunchFill5005","BunchFill5013","BunchFill5017","BunchFill5020","BunchFill5021",
+    "BunchFill5024","BunchFill5026","BunchFill5027","BunchFill5028","BunchFill5029",
+    "BunchFill5030"
+    ]
 
 for fill in fills:
     findOneFillScheme(dir,fill,outdir)
