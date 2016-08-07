@@ -33,8 +33,7 @@ def findOneFillScheme(path,filename,outdir):
     print("Saved "+outdir+filename+".txt")
 
 #Main Loop
-#dir = "/Users/rohan/Desktop/"
-dir = "/root/Desktop/bunch_temp/"
+dir = "/Users/rohan/Desktop/"
 outdir = "fillschemes/"
 
 #2016
@@ -65,7 +64,8 @@ fills = [
     "BunchFill5111","BunchFill5112","BunchFill5116","BunchFill5117",
 
     #Run2016F
-    "BunchFill5149","BunchFill5151","BunchFill5154"
+    "BunchFill5149","BunchFill5151","BunchFill5154","BunchFill5161","BunchFill5162",
+    "BunchFill5163"
     ]
 
 for fill in fills:
