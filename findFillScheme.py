@@ -16,10 +16,10 @@ def hasCollision(bunch):
 
 def findOneFillScheme(path,filename,outdir):
     
-    if not os.path.isfile(path+filename+".html"):
+    if not os.path.isfile(path+filename+".htm"):
         sys.exit("ERROR: WBM file for "+filename+" does not exist!")
 
-    soup = BeautifulSoup(open(path+filename+".html"),"lxml")
+    soup = BeautifulSoup(open(path+filename+".htm"),"lxml")
     
     bunchMap = soup.map
     bunches = [area for area in bunchMap.findAll("area")]
@@ -33,7 +33,7 @@ def findOneFillScheme(path,filename,outdir):
     print("Saved "+outdir+filename+".txt")
 
 #Main Loop
-dir = "/Users/rohan/Desktop/"
+dir = "/Users/rohan/Desktop/bunchfills/"
 outdir = "fillschemes/"
 
 #2016
@@ -49,7 +49,6 @@ fills = [
     "BunchFill5005","BunchFill5013","BunchFill5017","BunchFill5020","BunchFill5021",
     "BunchFill5024","BunchFill5026","BunchFill5027","BunchFill5028","BunchFill5029",
     "BunchFill5030",
-
     #Run2016C
     "BunchFill5038","BunchFill5043","BunchFill5045","BunchFill5048","BunchFill5052",
     "BunchFill5056","BunchFill5059","BunchFill5060","BunchFill5069","BunchFill5071",
@@ -65,7 +64,16 @@ fills = [
 
     #Run2016F
     "BunchFill5149","BunchFill5151","BunchFill5154","BunchFill5161","BunchFill5162",
-    "BunchFill5163"
+    "BunchFill5163","BunchFill5170","BunchFill5173","BunchFill5179","BunchFill5181",
+    "BunchFill5183","BunchFill5187","BunchFill5194","BunchFill5197","BunchFill5198",
+
+    #Run206G
+    "BunchFill5199","BunchFill5205","BunchFill5206","BunchFill5209","BunchFill5210",
+    "BunchFill5211","BunchFill5213","BunchFill5219","BunchFill5222","BunchFill5223",
+    "BunchFill5229","BunchFill5246","BunchFill5247","BunchFill5251","BunchFill5253",
+    "BunchFill5254","BunchFill5256","BunchFill5257","BunchFill5258","BunchFill5261",
+    "BunchFill5264","BunchFill5265","BunchFill5266","BunchFill5267","BunchFill5270",
+    "BunchFill5274","BunchFill5275","BunchFill5276"
     ]
 
 for fill in fills:
