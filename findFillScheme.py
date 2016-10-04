@@ -1,3 +1,5 @@
+#! /usr/bin/env python
+
 # Scrapes the fill scheme from a saved (offline) WBM "Bunch Fill" page
 # Needs the following packages: BeautifulSoup4 and lxml
 
@@ -16,67 +18,44 @@ def hasCollision(bunch):
 
 def findOneFillScheme(path,filename,outdir):
     
-    if not os.path.isfile(path+filename+".htm"):
+    if not os.path.isfile(path+filename):
         sys.exit("ERROR: WBM file for "+filename+" does not exist!")
 
-    soup = BeautifulSoup(open(path+filename+".htm"),"lxml")
+    soup = BeautifulSoup(open(path+filename),"lxml")
     
     bunchMap = soup.map
     bunches = [area for area in bunchMap.findAll("area")]
+
+    outfile = filename.strip(".htm*")+".txt"
     
-    f = open(outdir+filename+".txt","w")    
+    f = open(outdir+outfile,"w")    
     
     for bunch in bunches:
         bunch_clean = hasCollision(str(bunch))
         f.write(bunch_clean+"\n")
     f.close()
-    print("Saved "+outdir+filename+".txt")
+    print("Saved "+outdir+outfile)
 
-#Main Loop
-dir = "/Users/rohan/Desktop/bunchfills/"
-outdir = "fillschemes/"
+###Main Loop###
 
-#2016
-fills = [
-    #Run2016B
-    "BunchFill4888","BunchFill4889","BunchFill4890","BunchFill4892","BunchFill4895",
-    "BunchFill4896","BunchFill4905","BunchFill4906","BunchFill4910","BunchFill4915",
-    "BunchFill4919","BunchFill4924","BunchFill4925","BunchFill4926","BunchFill4930",
-    "BunchFill4935","BunchFill4937","BunchFill4942","BunchFill4945","BunchFill4947",
-    "BunchFill4953","BunchFill4954","BunchFill4956","BunchFill4958","BunchFill4960",
-    "BunchFill4961","BunchFill4964","BunchFill4965","BunchFill4976","BunchFill4979",
-    "BunchFill4980","BunchFill4984","BunchFill4985","BunchFill4988","BunchFill4990",
-    "BunchFill5005","BunchFill5013","BunchFill5017","BunchFill5020","BunchFill5021",
-    "BunchFill5024","BunchFill5026","BunchFill5027","BunchFill5028","BunchFill5029",
-    "BunchFill5030",
+#Check arguments
+if len(sys.argv)>1:
+    if "help" in sys.argv[1]:
+        print "This script finds fill schemes from WBM \"Bunch Fill\" webpages that have been saved locally."
+        print "usage:  ./findFillScheme.py <indir>=./bunchfills/ <outdir>=./fillschemes/"
+        sys.exit()
+    else:
+        indir = sys.argv[1]
+else:
+    indir = "bunchfills/"
 
-    #Run2016C
-    "BunchFill5038","BunchFill5043","BunchFill5045","BunchFill5048","BunchFill5052",
-    "BunchFill5056","BunchFill5059","BunchFill5060","BunchFill5069","BunchFill5071",
+if(len(sys.argv)>2):
+    outdir = sys.argv[2]
+else:
+    outdir = "fillschemes/"
 
-    #Run2016D
-    "BunchFill5072","BunchFill5073","BunchFill5076","BunchFill5078","BunchFill5080",
-    "BunchFill5083","BunchFill5085","BunchFill5091","BunchFill5093","BunchFill5095",
-
-    #Run2016E
-    "BunchFill5096","BunchFill5097","BunchFill5101","BunchFill5102","BunchFill5105",
-    "BunchFill5106","BunchFill5107","BunchFill5108","BunchFill5109","BunchFill5110",
-    "BunchFill5111","BunchFill5112","BunchFill5116","BunchFill5117",
-
-    #Run2016F
-    "BunchFill5149","BunchFill5151","BunchFill5154","BunchFill5161","BunchFill5162",
-    "BunchFill5163","BunchFill5169","BunchFill5170","BunchFill5173","BunchFill5179",
-    "BunchFill5181","BunchFill5183","BunchFill5187","BunchFill5194","BunchFill5197",
-    "BunchFill5198",
-
-    #Run206G
-    "BunchFill5199","BunchFill5205","BunchFill5206","BunchFill5209","BunchFill5210",
-    "BunchFill5211","BunchFill5213","BunchFill5219","BunchFill5222","BunchFill5223",
-    "BunchFill5229","BunchFill5246","BunchFill5247","BunchFill5251","BunchFill5253",
-    "BunchFill5254","BunchFill5256","BunchFill5257","BunchFill5258","BunchFill5261",
-    "BunchFill5264","BunchFill5265","BunchFill5266","BunchFill5267","BunchFill5270",
-    "BunchFill5274","BunchFill5275","BunchFill5276"
-    ]
+#Run script
+fills = [file for file in os.listdir(indir) if ".htm" in file]
 
 for fill in fills:
-    findOneFillScheme(dir,fill,outdir)
+    findOneFillScheme(indir,fill,outdir)
