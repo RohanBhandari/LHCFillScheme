@@ -26,7 +26,7 @@ def findOneFillScheme(path,filename,outdir):
     bunchMap = soup.map
     bunches = [area for area in bunchMap.findAll("area")]
 
-    outfile = filename.strip(".htm*")+".txt"
+    outfile = os.path.splitext(filename)[0]+".txt"
     
     f = open(outdir+outfile,"w")    
     
