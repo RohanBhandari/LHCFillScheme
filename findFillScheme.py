@@ -24,20 +24,23 @@ def findOneFillScheme(path,filename,outdir):
     soup = BeautifulSoup(open(path+filename),"lxml")
     
     bunchMap = soup.map
-    bunches = [area for area in bunchMap.findAll("area")]
+    if bunchMap:
+        bunches = [area for area in bunchMap.findAll("area")]
 
-    outfile = os.path.splitext(filename)[0]+".txt"
+        outfile = os.path.splitext(filename)[0]+".txt"
     
-    f = open(outdir+outfile,"w")    
+        f = open(outdir+outfile,"w")    
     
-    for bunch in bunches:
-        bunch_clean = hasCollision(str(bunch))
-        f.write(bunch_clean+"\n")
-    f.close()
-    print("Saved "+outdir+outfile)
+        for bunch in bunches:
+            bunch_clean = hasCollision(str(bunch))
+            f.write(bunch_clean+"\n")
+        f.close()
+        print("Saved "+outdir+outfile)
+
+    else:
+        print("No bunch map for "+filename+". Skipping.")
 
 ###Main Loop###
-
 #Check arguments
 if len(sys.argv)>1:
     if "help" in sys.argv[1]:
