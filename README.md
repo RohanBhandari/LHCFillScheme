@@ -1,8 +1,5 @@
-# Misc
-Miscellaneous Scripts
+# LHCFillScheme
 
-1) findFillScheme.py  
--- Scrapes the fill scheme from a saved (offline) WBM "Bunch Fill" page  
--- Needs the following packages: BeautifulSoup4 and lxml
+Finds the fill scheme from a saved (offline) WBM "Bunch Fill" page
 
 

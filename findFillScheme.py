@@ -1,11 +1,12 @@
 #! /usr/bin/env python
 
-# Scrapes the fill scheme from a saved (offline) WBM "Bunch Fill" page
-# Needs the following packages: BeautifulSoup4 and lxml
+# Finds the fill scheme from a saved (offline) WBM "Bunch Fill" page
 
-from bs4 import BeautifulSoup
+import argparse
+from argparse import ArgumentDefaultsHelpFormatter
 import os.path
 import sys
+from bs4 import BeautifulSoup
 
 def hasCollision(bunch):
     nTrue=bunch.count("true")
@@ -18,47 +19,30 @@ def hasCollision(bunch):
 
 def findOneFillScheme(path,filename,outdir):
     
-    if not os.path.isfile(path+filename):
-        sys.exit("ERROR: WBM file for "+filename+" does not exist!")
-
     soup = BeautifulSoup(open(path+filename),"lxml")
     
     bunchMap = soup.map
-    if bunchMap:
-        bunches = [area for area in bunchMap.findAll("area")]
+    if not bunchMap:
+        print("No bunch map for "+filename+". Skipping.")
 
-        outfile = os.path.splitext(filename)[0]+".txt"
-    
+    else:
+        outfile = os.path.splitext(filename)[0]+".txt"    
         f = open(outdir+outfile,"w")    
-    
+
+        bunches = [area for area in bunchMap.findAll("area")]    
         for bunch in bunches:
-            bunch_clean = hasCollision(str(bunch))
-            f.write(bunch_clean+"\n")
+            isbx = hasCollision(str(bunch))
+            f.write(isbx+"\n")
         f.close()
         print("Saved "+outdir+outfile)
 
-    else:
-        print("No bunch map for "+filename+". Skipping.")
+if __name__ == '__main__':
 
-###Main Loop###
-#Check arguments
-if len(sys.argv)>1:
-    if "help" in sys.argv[1]:
-        print "This script finds fill schemes from WBM \"Bunch Fill\" webpages that have been saved locally."
-        print "usage:  ./findFillScheme.py <indir>=./bunchfills/ <outdir>=./fillschemes/"
-        sys.exit()
-    else:
-        indir = sys.argv[1]
-else:
-    indir = "bunchfills/"
+    parser = argparse.ArgumentParser(description="Finds the fill scheme from a saved (offline) WBM \"Bunch Fill\" page", formatter_class=ArgumentDefaultsHelpFormatter)
+    parser.add_argument("-i", "--indir", default="bunchfills/", help="Directory from which to read the input files.")
+    parser.add_argument("-o", "--outdir", default="fillschemes/", help="Directory to save output files.")
+    args = parser.parse_args()
 
-if(len(sys.argv)>2):
-    outdir = sys.argv[2]
-else:
-    outdir = "fillschemes/"
-
-#Run script
-fills = [file for file in os.listdir(indir) if ".htm" in file]
-
-for fill in fills:
-    findOneFillScheme(indir,fill,outdir)
+    fills = [file for file in os.listdir(args.indir) if ".htm" in file]
+    for fill in fills:
+        findOneFillScheme(args.indir, fill, args.outdir)
