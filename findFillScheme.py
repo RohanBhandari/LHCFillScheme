@@ -42,6 +42,8 @@ if __name__ == '__main__':
     parser.add_argument("-i", "--indir", default="bunchfills/", help="Directory from which to read the input files.")
     parser.add_argument("-o", "--outdir", default="fillschemes/", help="Directory to save output files.")
     args = parser.parse_args()
+    if args.indir[-1]!="/": args.indir+="/" 
+    if args.outdir[-1]!="/": args.outdir+="/" 
 
     fills = [file for file in os.listdir(args.indir) if ".htm" in file]
     for fill in fills:
