@@ -1,5 +1,5 @@
 # LHCFillScheme
 
-Finds the fill scheme from a saved (offline) WBM "Bunch Fill" page
+Analyzes a Fill Scheme file and outputs a txt file with the Bunch Map
 
 
