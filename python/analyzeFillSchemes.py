@@ -4,7 +4,7 @@
 
 import argparse
 from argparse import ArgumentDefaultsHelpFormatter
-import os.path
+import os
 
 
 def findOneFillScheme(indir, filename, outdir):
@@ -38,8 +38,10 @@ if __name__ == '__main__':
 
     parser = argparse.ArgumentParser(description="Analyzes a Fill Scheme file and outputs a txt file with the Bunch Map", formatter_class=ArgumentDefaultsHelpFormatter)
     parser.add_argument("-i", "--indir", default="fillschemes/", help="Directory from which to read the input files.")
-    parser.add_argument("-o", "--outdir", default="bunchmaps/", help="Directory to save output files.")
+    parser.add_argument("-o", "--outdir", default="bunchmaps/", help="Directory to save output files to.")
     args = parser.parse_args()
+    if args.indir[-1]!='/': args.indir+='/'
+    if args.outdir[-1]!='/': args.outdir+='/'
 
     #Analyzes fill schemes for all files in input directory
     fills = [file for file in os.listdir(args.indir) if ".txt" in file]
