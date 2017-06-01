@@ -8,18 +8,18 @@ class Fill{
 public:
   Fill(TString file);
 
-  // Vector of bxs for each bx type
-  std::vector<int> isoBxs;     // Isolated bx
-  std::vector<int> firstBxs;   // First bx in a train
-  std::vector<int> lastBxs;    // Last bx in a train
-  std::vector<int> middleBxs;  // Not first or last in a train
-  std::vector<int> nonisoBxs;  // Non-isolated bxs (first, last, and middle)
-  std::vector<int> allBxs;     // All colliding bxs (first, last, middle and iso)
-  std::vector<int> emptyBxs;   // Bx with no collision
+  // Vector of BXs for each BX type
+  std::vector<int> isoBXs;     // Isolated BX
+  std::vector<int> firstBXs;   // First BX in a train
+  std::vector<int> lastBXs;    // Last BX in a train
+  std::vector<int> middleBXs;  // Not first or last in a train
+  std::vector<int> nonisoBXs;  // Non-isolated BXs (first, last, and middle)
+  std::vector<int> allBXs;     // All colliding BXs (first, last, middle and iso)
+  std::vector<int> emptyBXs;   // BX with no collision
   
 private:
   std::vector<bool> readFile(TString file);
-  void getBxs(std::vector<bool> scheme);
+  void getBXs(std::vector<bool> scheme);
 
 };
   
