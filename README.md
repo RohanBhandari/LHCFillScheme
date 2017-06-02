@@ -45,7 +45,7 @@ Empty BXs    = all non-colliding bunch crossings
 
 #### C++
 
-The C++ files for the `Fill` class are `src/Fill.cpp` and `inc/Fill.hpp`.
+The C++ `Fill` class files are `src/Fill.cpp` and `inc/Fill.hpp`.
 
 ```
 #include "src/Fill.cpp"
@@ -63,7 +63,7 @@ fill5717.emptyBXs
 ```
 
 #### Python
-The python file for the `Fill` class are `python/Fill.py`
+The python `Fill` class file is `python/Fill.py`
 
 ```
 from python.Fill import Fill
