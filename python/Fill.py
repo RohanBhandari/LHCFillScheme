@@ -1,5 +1,5 @@
 class Fill:
-    def __init__(self, file):
+    def __init__(self, file, runlist=[]):
 
         self.isoBXs    = []
         self.firstBXs  = []
@@ -11,6 +11,8 @@ class Fill:
 
         scheme = self.readFile(file)
         self.getBXs(scheme)
+
+        self.runs = runlist
 
     def readFile(self, filepath):    
         scheme = []
